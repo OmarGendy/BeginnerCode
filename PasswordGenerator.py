@@ -33,7 +33,6 @@ def password_generator(level, length):
 
     # This will randomize the string by popping values out of a set to recreate the string.
     # This is needed because the 1st value will always be lowercase, 2nd is number, 3rd is uppercase, and 4th is symbol
-    print(password)
     password = set(password)
     final_password = ""
     for i in range(len(password)):
