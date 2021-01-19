@@ -33,25 +33,33 @@ def password_generator(level, length):
 
     # This will randomize the string by popping values out of a set to recreate the string.
     # This is needed because the 1st value will always be lowercase, 2nd is number, 3rd is uppercase, and 4th is symbol
-    password = set(password)
+    password = list(password)
+    count = len(password)
     final_password = ""
     for i in range(len(password)):
-        final_password += password.pop()
+        final_password += password.pop(random.randint(0, count-1))
+        count -= 1
+
     print(final_password)
 
 
-n = 0
-while n != 1 and n != 2 and n != 3 and n != 4:
-    n = int(input("On a scale of 1 - 4, how strong do you want your password to be?\n\
-    1 - Lowercase letters\n\
-    2 - lowercase letters and numbers\n\
-    3 - lowercase letters, numbers, and uppercase letters\n\
-    4 - lowercase letters, numbers, uppercase letters, and symbols\n\
-    Enter here: "))
+def main():
+    n = 0
+    while n != 1 and n != 2 and n != 3 and n != 4:
+        n = int(input("On a scale of 1 - 4, how strong do you want your password to be?\n\
+        1 - Lowercase letters\n\
+        2 - lowercase letters and numbers\n\
+        3 - lowercase letters, numbers, and uppercase letters\n\
+        4 - lowercase letters, numbers, uppercase letters, and symbols\n\
+        Enter here: "))
 
-m = input("How many characters do you want it to be? Enter a number: ")
-# This will not error out because if m is not a digit, the while loop will not evaluate the 2nd criteria
-while not m.isdigit() or int(m) < n:
-    m = input("It must be a number and the length must exceed the level to fit all types of characters: ")
+    m = input("How many characters do you want it to be? Enter a number: ")
+    # This will not error out because if m is not a digit, the while loop will not evaluate the 2nd criteria
+    while not m.isdigit() or int(m) < n:
+        m = input("It must be a number and the length must exceed the level to fit all types of characters: ")
 
-password_generator(n, int(m))
+    password_generator(n, int(m))
+
+
+if __name__ == "__main__":
+    main()
